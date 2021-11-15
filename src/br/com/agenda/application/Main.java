@@ -18,8 +18,8 @@ public class Main {
         c1.setIdade(38);
         c1.setDataCadastro(new Date());
         c1.setId(1);
-
-        contatoDAO.update(c1);
+     //  contatoDAO.update(c1);
+        contatoDAO.deleteById(3);
 
 
         //visualização
