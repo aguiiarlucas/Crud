@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Contato  contato = new Contato();
-        contato.setNome("Maria Padilha");
-        contato.setIdade(50);
+        contato.setNome("João Padilha");
+        contato.setIdade(78);
         contato.setDataCadastro(new Date());
 
         ContatoDAO contatoDAO = new ContatoDAO();
