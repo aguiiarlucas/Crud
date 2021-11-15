@@ -12,8 +12,6 @@ public class ContatoDAO {
 
     public void save (Contato contato) throws Exception {
 
-
-
         String sql =  "INSERT INTO contatos(nome,idade,datacadastro)" +
                 " VALUES(?,?,?)";
         Connection conn = null;
@@ -29,6 +27,7 @@ public class ContatoDAO {
 
             pstm.executeUpdate();
             System.out.println("Contato Salvo com sucesso!");
+
         }catch (Exception e ){
             e.printStackTrace();
         }finally {
@@ -40,6 +39,7 @@ public class ContatoDAO {
             }
         }
     }
+
 
     public List<Contato> getContatos(){
 
@@ -84,5 +84,35 @@ public class ContatoDAO {
         }
             return  contatos;
     }
+    public void update (Contato contato){
+        String sql = "UPDATE contatos SET nome = ? , idade = ? , dataCadastro = ?"+
+                "WHERE id = ? ";
 
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL() ;
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setString(1,contato.getNome());
+            pstm.setInt(2,contato.getIdade());
+            pstm.setDate(3,new Date(contato.getDataCadastro().getTime()));
+            pstm.setInt(4,contato.getId());
+
+            pstm.execute();
+
+        }catch (Exception e ){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (pstm !=null){
+                    pstm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
+        }
+    }
 }

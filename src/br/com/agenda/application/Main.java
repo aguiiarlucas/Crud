@@ -7,14 +7,25 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
-        Contato  contato = new Contato();
-        contato.setNome("João Padilha");
-        contato.setIdade(78);
-        contato.setDataCadastro(new Date());
-
         ContatoDAO contatoDAO = new ContatoDAO();
-        contatoDAO.save(contato);
+        Contato  contato = new Contato();
+        contato.setNome("João Dias");
+        contato.setIdade(35);
+        contato.setDataCadastro(new Date());
+        // contactDAO.save(contato);
+        Contato c1 = new Contato();
+        c1.setNome("João Dias Gomes");
+        c1.setIdade(38);
+        c1.setDataCadastro(new Date());
+        c1.setId(1);
+
+        contatoDAO.update(c1);
+
+
+        //visualização
+        for ( Contato c : contatoDAO.getContatos()) {
+            System.out.println("Contato: "+ c.getNome());
+        }
 
     }
 }
